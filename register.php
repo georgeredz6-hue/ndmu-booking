@@ -87,10 +87,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $department = sanitizeInput($_POST['department'] ?? '');
     $phone      = sanitizeInput($_POST['phone'] ?? '');
 
-    // Flatten all valid department options for validation
     $allDepts = [];
     foreach ($ndmuDepartments as $college => $depts) {
-        $allDepts[] = $college; // allow college-level selection too
+        $allDepts[] = $college;
         foreach ($depts as $d) {
             $allDepts[] = $d;
         }
@@ -113,7 +112,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = 'That email is already registered.';
         } else {
             $hash = password_hash($password, PASSWORD_BCRYPT);
-            // Role is always 'student' by default — admin assigns specific roles later
             $stmt = $pdo->prepare('INSERT INTO users (full_name, email, password_hash, student_id, department, phone, role, is_active, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, 1, NOW())');
             $stmt->execute([$fullName, $email, $hash, $studentId, $department, $phone, 'student']);
             redirectWithMessage('login.php', 'success', 'Registration successful. Please sign in.');
@@ -125,15 +123,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div class="container-fluid auth-page" style="background-image:url('assets/images/ndmubgp.jpg')">
   <div class="row min-vh-100">
-    <div class="col-lg-6 d-none d-lg-flex ndmu-split-left align-items-end" style="background-image:url('assets/images/ndmubg.jpg')">
+    <!-- Left visual panel -->
+    <div class="col-lg-5 d-none d-lg-flex ndmu-split-left align-items-end" style="background-image:url('assets/images/ndmubgp.jpg')">
       <div class="p-5">
         <div class="h2 fw-bold mb-2">Create your account</div>
-        <div class="text-white-50">Use your official NDMU email for faster verification.</div>
+        <div style="color:rgba(255,255,255,0.6);">Use your official NDMU email for faster verification.</div>
       </div>
     </div>
 
-    <div class="col-lg-6 d-flex align-items-center bg-white">
-      <div class="container py-5" style="max-width:620px;">
+    <!-- Right form panel -->
+    <div class="col-lg-7 auth-form-side">
+      <div class="auth-form-wrapper" style="max-width:620px;">
         <?php if ($flash): ?>
           <div class="alert alert-<?= e($flash['type']) ?>"><?= e($flash['message']) ?></div>
         <?php endif; ?>
@@ -141,81 +141,82 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <div class="alert alert-danger"><?= e($error) ?></div>
         <?php endif; ?>
 
-        <div class="d-flex align-items-center gap-3 mb-4">
-          <img src="assets/images/ndmulogo.png" alt="NDMU" width="60" height="60" style="object-fit:contain">
+        <div class="d-flex align-items-center gap-3 mb-4 fade-up">
+          <img src="assets/images/ndmulogo.png" alt="NDMU" width="52" height="52" style="object-fit:contain">
           <div>
-            <div class="fw-bold fs-5">Notre Dame of Marbel University</div>
-            <div class="text-muted">Facility Booking System</div>
+            <div class="fw-bold fs-5" style="color:var(--ndmu-navy);">Register</div>
+            <div class="text-muted small">Join the NDMU Facility Booking System</div>
           </div>
         </div>
 
-        <form method="post" class="glass-card">
-          <div class="p-4">
-            <input type="hidden" name="csrf_token" value="<?= e(generateCsrfToken()) ?>">
-            <div class="row g-3">
-              <div class="col-12">
-                <label class="form-label">Full Name</label>
-                <input class="form-control" name="full_name" required value="<?= e($_POST['full_name'] ?? '') ?>">
-              </div>
-              <div class="col-12">
-                <label class="form-label">Email</label>
-                <input class="form-control" type="email" name="email" required value="<?= e($_POST['email'] ?? '') ?>">
-              </div>
+        <form method="post" class="fade-up fade-up-delay-1">
+          <input type="hidden" name="csrf_token" value="<?= e(generateCsrfToken()) ?>">
 
-              <div class="col-md-6">
-                <label class="form-label">Password</label>
-                <div class="input-group">
-                  <input id="regPwd" class="form-control" type="password" name="password" required>
-                  <button class="btn btn-outline-secondary" type="button" data-toggle-password="#regPwd" aria-label="Show/Hide password">
-                    <i class="fa-solid fa-eye"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Confirm Password</label>
-                <div class="input-group">
-                  <input id="regPwd2" class="form-control" type="password" name="confirm_password" required>
-                  <button class="btn btn-outline-secondary" type="button" data-toggle-password="#regPwd2" aria-label="Show/Hide password">
-                    <i class="fa-solid fa-eye"></i>
-                  </button>
-                </div>
-              </div>
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label">Full Name</label>
+              <input class="form-control" name="full_name" required value="<?= e($_POST['full_name'] ?? '') ?>" placeholder="Juan Dela Cruz">
+            </div>
+            <div class="col-12">
+              <label class="form-label">Email</label>
+              <input class="form-control" type="email" name="email" required value="<?= e($_POST['email'] ?? '') ?>" placeholder="you@ndmu.edu.ph">
+            </div>
 
-              <div class="col-md-6">
-                <label class="form-label">Student / Employee ID</label>
-                <input class="form-control" name="student_id" required value="<?= e($_POST['student_id'] ?? '') ?>">
+            <div class="col-md-6">
+              <label class="form-label">Password</label>
+              <div class="input-group">
+                <input id="regPwd" class="form-control" type="password" name="password" required placeholder="Min. 8 characters">
+                <button class="btn btn-outline-secondary" type="button" data-toggle-password="#regPwd" aria-label="Show/Hide password">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
               </div>
-              <div class="col-md-6">
-                <label class="form-label">Phone</label>
-                <input class="form-control" name="phone" required value="<?= e($_POST['phone'] ?? '') ?>">
-              </div>
-
-              <div class="col-12">
-                <label class="form-label">College / Department</label>
-                <select class="form-select" name="department" required>
-                  <option value="" disabled <?= empty($_POST['department']) ? 'selected' : '' ?>>— Select your college/department —</option>
-                  <?php foreach ($ndmuDepartments as $college => $depts): ?>
-                    <optgroup label="<?= e($college) ?>">
-                      <?php foreach ($depts as $dept): ?>
-                        <option value="<?= e($dept) ?>" <?= (($_POST['department'] ?? '') === $dept) ? 'selected' : '' ?>>
-                          <?= e($dept) ?>
-                        </option>
-                      <?php endforeach; ?>
-                    </optgroup>
-                  <?php endforeach; ?>
-                </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Confirm Password</label>
+              <div class="input-group">
+                <input id="regPwd2" class="form-control" type="password" name="confirm_password" required placeholder="Re-enter password">
+                <button class="btn btn-outline-secondary" type="button" data-toggle-password="#regPwd2" aria-label="Show/Hide password">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
               </div>
             </div>
 
-            <div class="alert alert-info small mt-3 mb-0 py-2">
-              <i class="fa-solid fa-circle-info me-1"></i>
-              All new accounts are registered as <strong>Student</strong> by default. An administrator can assign your specific role after registration.
+            <div class="col-md-6">
+              <label class="form-label">Student / Employee ID</label>
+              <input class="form-control" name="student_id" required value="<?= e($_POST['student_id'] ?? '') ?>" placeholder="e.g. 2024-00123">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Phone</label>
+              <input class="form-control" name="phone" required value="<?= e($_POST['phone'] ?? '') ?>" placeholder="09XX XXX XXXX">
             </div>
 
-            <div class="d-flex gap-2 mt-4">
-              <button class="btn btn-warning fw-semibold">Create Account</button>
-              <a class="btn btn-outline-secondary" href="login.php">Back to Sign In</a>
+            <div class="col-12">
+              <label class="form-label">College / Department</label>
+              <select class="form-select" name="department" required>
+                <option value="" disabled <?= empty($_POST['department']) ? 'selected' : '' ?>>Select your college/department</option>
+                <?php foreach ($ndmuDepartments as $college => $depts): ?>
+                  <optgroup label="<?= e($college) ?>">
+                    <?php foreach ($depts as $dept): ?>
+                      <option value="<?= e($dept) ?>" <?= (($_POST['department'] ?? '') === $dept) ? 'selected' : '' ?>>
+                        <?= e($dept) ?>
+                      </option>
+                    <?php endforeach; ?>
+                  </optgroup>
+                <?php endforeach; ?>
+              </select>
             </div>
+          </div>
+
+          <div class="alert alert-info small mt-3 mb-0 py-2">
+            <i class="fa-solid fa-circle-info me-1"></i>
+            All new accounts are registered as <strong>Student</strong> by default. An administrator can assign your specific role after registration.
+          </div>
+
+          <div class="d-flex gap-2 mt-4">
+            <button class="btn btn-warning fw-semibold">
+              Create Account <i class="fa-solid fa-arrow-right ms-1"></i>
+            </button>
+            <a class="btn btn-outline-secondary" href="login.php">Back to Sign In</a>
           </div>
         </form>
       </div>
