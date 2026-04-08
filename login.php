@@ -29,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $u = $stmt->fetch();
 
         if (!$u || (isset($u['is_active']) && (int)$u['is_active'] === 0) || !password_verify($password, (string)$u['password_hash'])) {
-            // Generic message — does not reveal whether email or password was wrong (anti-enumeration)
             $error = 'Invalid email or password.';
         } else {
             session_regenerate_id(true);
@@ -50,7 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ]);
             }
 
-            // Redirect to the dashboard that matches the user's assigned role
             header('Location: ' . roleRedirectTarget((string)$u['role']));
             exit;
         }
@@ -59,66 +57,74 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <?php require_once __DIR__ . '/includes/header.php'; ?>
 
-<div class="container-fluid auth-page" style="background-image:url('assets/images/ndmubg.jpg')">
+<div class="container-fluid auth-page" style="background-image:url('assets/images/ndmubgp.jpg')">
   <div class="row min-vh-100">
+    <!-- Left visual panel (desktop only) -->
     <div class="col-lg-6 d-none d-lg-flex ndmu-split-left align-items-end" style="background-image:url('assets/images/ndmubgp.jpg')">
       <div class="p-5">
         <div class="h2 fw-bold mb-2">Notre Dame of Marbel University</div>
-        <div class="h5 text-white-50 mb-0">Facility Booking System</div>
+        <div class="h5" style="color:rgba(255,255,255,0.6);">Facility Booking System</div>
       </div>
     </div>
 
-    <div class="col-lg-6 d-flex align-items-center bg-white">
-      <div class="container py-5" style="max-width:520px;">
+    <!-- Right form panel -->
+    <div class="col-lg-6 auth-form-side">
+      <div class="auth-form-wrapper">
         <?php if ($flash): ?>
-          <div class="alert alert-<?= e($flash['type']) ?>"><?= e($flash['message']) ?></div>
+          <div class="alert alert-<?= e($flash['type']) ?> fade-up"><?= e($flash['message']) ?></div>
         <?php endif; ?>
         <?php if ($error): ?>
-          <div class="alert alert-danger"><?= e($error) ?></div>
+          <div class="alert alert-danger fade-up"><?= e($error) ?></div>
         <?php endif; ?>
 
-        <div class="d-flex align-items-center gap-3 mb-4">
-          <img src="assets/images/ndmulogo.png" alt="NDMU" width="60" height="60" style="object-fit:contain">
+        <div class="d-flex align-items-center gap-3 mb-4 fade-up">
+          <img src="assets/images/ndmulogo.png" alt="NDMU" width="52" height="52" style="object-fit:contain">
           <div>
-            <div class="fw-bold fs-5">Notre Dame of Marbel University</div>
-            <div class="text-muted">Facility Booking System</div>
+            <div class="fw-bold fs-5" style="color:var(--ndmu-navy);">Welcome back</div>
+            <div class="text-muted small">Sign in to your account</div>
           </div>
         </div>
 
-        <form method="post" class="glass-card">
-          <div class="p-4">
-            <input type="hidden" name="csrf_token" value="<?= e(generateCsrfToken()) ?>">
+        <form method="post" class="fade-up fade-up-delay-1">
+          <input type="hidden" name="csrf_token" value="<?= e(generateCsrfToken()) ?>">
 
-            <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input class="form-control" type="email" name="email" required value="<?= e($_POST['email'] ?? '') ?>" autocomplete="email">
-            </div>
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input class="form-control form-control-lg" type="email" name="email" required
+                   value="<?= e($_POST['email'] ?? '') ?>" autocomplete="email"
+                   placeholder="you@ndmu.edu.ph">
+          </div>
 
-            <div class="mb-2">
-              <label class="form-label">Password</label>
-              <div class="input-group">
-                <input id="loginPassword" class="form-control" type="password" name="password" required autocomplete="current-password">
-                <button class="btn btn-outline-secondary" type="button" data-toggle-password="#loginPassword" aria-label="Show/Hide password">
-                  <i class="fa-solid fa-eye"></i>
-                </button>
-              </div>
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <div class="input-group">
+              <input id="loginPassword" class="form-control form-control-lg" type="password" name="password"
+                     required autocomplete="current-password" placeholder="Enter your password">
+              <button class="btn btn-outline-secondary" type="button" data-toggle-password="#loginPassword" aria-label="Show/Hide password">
+                <i class="fa-solid fa-eye"></i>
+              </button>
             </div>
+          </div>
 
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="remember" id="rememberMe" <?= !empty($_POST['remember']) ? 'checked' : '' ?>>
-                <label class="form-check-label" for="rememberMe">Remember Me</label>
-              </div>
-              <a class="text-decoration-none" href="forgot_password.php">Forgot Password?</a>
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="remember" id="rememberMe" <?= !empty($_POST['remember']) ? 'checked' : '' ?>>
+              <label class="form-check-label small" for="rememberMe">Remember me</label>
             </div>
+            <a class="small fw-semibold" href="forgot_password.php" style="color:var(--ndmu-gold);">Forgot password?</a>
+          </div>
 
-            <button class="btn btn-warning w-100 fw-semibold">Sign In</button>
-            <div class="text-center mt-3">
-              <span class="text-muted">No account?</span> <a href="register.php">Register</a>
-            </div>
-            <div class="text-muted small text-center mt-2">
-              You will be redirected to your assigned role's dashboard automatically.
-            </div>
+          <button class="btn btn-warning btn-lg w-100 fw-semibold mb-3">
+            Sign In <i class="fa-solid fa-arrow-right ms-2"></i>
+          </button>
+
+          <div class="text-center">
+            <span class="text-muted small">Don't have an account?</span>
+            <a class="small fw-semibold" href="register.php" style="color:var(--ndmu-navy);">Create one</a>
+          </div>
+
+          <div class="text-muted small text-center mt-3" style="color:var(--ndmu-text-muted);">
+            You will be redirected to your assigned role's dashboard automatically.
           </div>
         </form>
       </div>

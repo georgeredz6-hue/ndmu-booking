@@ -48,13 +48,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php require_once __DIR__ . '/includes/header.php'; ?>
 <?php require_once __DIR__ . '/includes/navbar.php'; ?>
 
-<div class="banner text-white mb-4" style="background-image:url('assets/images/ndmubgp.jpg')">
-  <div class="banner-content container py-5">
+<!-- Page Banner -->
+<div class="page-banner">
+  <div class="container">
     <div class="d-flex align-items-center gap-3">
-      <img src="assets/images/ndmulogo.png" alt="NDMU" width="48" height="48" style="object-fit:contain">
+      <img src="assets/images/ndmulogo.png" alt="NDMU" width="48" height="48" style="object-fit:contain;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.2));">
       <div>
-        <h1 class="h2 fw-bold mb-1">Contact Us</h1>
-        <div class="text-white-50">We’d love to hear from you.</div>
+        <h1 class="h2 fw-bold mb-0">Contact Us</h1>
+        <div class="text-white-50 small">We'd love to hear from you.</div>
       </div>
     </div>
   </div>
@@ -62,45 +63,77 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div class="container pb-5">
   <?php if ($flash): ?>
-    <div class="alert alert-<?= e($flash['type']) ?>"><?= e($flash['message']) ?></div>
+    <div class="alert alert-<?= e($flash['type']) ?> fade-up"><?= e($flash['message']) ?></div>
   <?php endif; ?>
 
   <div class="row g-4">
-    <div class="col-lg-5">
-      <div class="card shadow-sm">
+    <!-- Contact Info -->
+    <div class="col-lg-5 fade-up">
+      <div class="card h-100">
         <div class="card-body">
-          <h2 class="h5 fw-semibold mb-3">Contact Information</h2>
-          <div class="mb-2"><i class="fa-solid fa-location-dot me-2 text-muted"></i><?= e($settings['address']) ?></div>
-          <div class="mb-2"><i class="fa-solid fa-phone me-2 text-muted"></i><?= e($settings['phone']) ?></div>
-          <div class="mb-2"><i class="fa-solid fa-envelope me-2 text-muted"></i><?= e($settings['email']) ?></div>
+          <h2 class="h5 fw-bold mb-4" style="color:var(--ndmu-navy);">Contact Information</h2>
+
+          <div class="d-flex align-items-start gap-3 mb-4">
+            <div class="card-icon icon-navy flex-shrink-0" style="width:40px;height:40px;">
+              <i class="fa-solid fa-location-dot" style="font-size:0.875rem;"></i>
+            </div>
+            <div>
+              <div class="fw-semibold small">Address</div>
+              <div class="text-muted small"><?= e($settings['address']) ?></div>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-start gap-3 mb-4">
+            <div class="card-icon icon-navy flex-shrink-0" style="width:40px;height:40px;">
+              <i class="fa-solid fa-phone" style="font-size:0.875rem;"></i>
+            </div>
+            <div>
+              <div class="fw-semibold small">Phone</div>
+              <div class="text-muted small"><?= e($settings['phone']) ?></div>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-start gap-3">
+            <div class="card-icon icon-navy flex-shrink-0" style="width:40px;height:40px;">
+              <i class="fa-solid fa-envelope" style="font-size:0.875rem;"></i>
+            </div>
+            <div>
+              <div class="fw-semibold small">Email</div>
+              <div class="text-muted small"><?= e($settings['email']) ?></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-7">
-      <div class="card shadow-sm">
+
+    <!-- Contact Form -->
+    <div class="col-lg-7 fade-up fade-up-delay-1">
+      <div class="card">
         <div class="card-body">
-          <h2 class="h5 fw-semibold mb-3">Send a message</h2>
+          <h2 class="h5 fw-bold mb-4" style="color:var(--ndmu-navy);">Send a Message</h2>
           <form method="post">
             <input type="hidden" name="csrf_token" value="<?= e(generateCsrfToken()) ?>">
             <div class="row g-3">
               <div class="col-md-6">
                 <label class="form-label">Name</label>
-                <input class="form-control" name="name" value="<?= e($user['name'] ?? '') ?>" required>
+                <input class="form-control" name="name" value="<?= e($user['name'] ?? '') ?>" required placeholder="Your full name">
               </div>
               <div class="col-md-6">
                 <label class="form-label">Email</label>
-                <input class="form-control" type="email" name="email" value="<?= e($user['email'] ?? '') ?>" required>
+                <input class="form-control" type="email" name="email" value="<?= e($user['email'] ?? '') ?>" required placeholder="you@example.com">
               </div>
               <div class="col-12">
                 <label class="form-label">Subject</label>
-                <input class="form-control" name="subject" required>
+                <input class="form-control" name="subject" required placeholder="What is this about?">
               </div>
               <div class="col-12">
                 <label class="form-label">Message</label>
-                <textarea class="form-control" name="message" rows="6" required></textarea>
+                <textarea class="form-control" name="message" rows="5" required placeholder="Write your message here..."></textarea>
               </div>
               <div class="col-12 d-flex gap-2">
-                <button class="btn btn-warning">Submit</button>
+                <button class="btn btn-warning fw-semibold">
+                  <i class="fa-solid fa-paper-plane me-1"></i>Send Message
+                </button>
                 <a class="btn btn-outline-secondary" href="faq.php">View FAQ</a>
               </div>
             </div>
