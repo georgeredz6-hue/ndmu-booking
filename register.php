@@ -134,6 +134,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Right form panel -->
     <div class="col-lg-7 auth-form-side">
       <div class="auth-form-wrapper" style="max-width:620px;">
+        <a href="index.php" class="d-inline-flex align-items-center gap-1 text-muted small mb-3 text-decoration-none" style="transition:color 0.2s;">
+          <i class="fa-solid fa-arrow-left"></i> Back to Home
+        </a>
         <?php if ($flash): ?>
           <div class="alert alert-<?= e($flash['type']) ?>"><?= e($flash['message']) ?></div>
         <?php endif; ?>
