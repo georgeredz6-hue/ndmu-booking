@@ -26,7 +26,7 @@ try {
 <div class="page-banner">
   <div class="container">
     <div class="d-flex align-items-center gap-3">
-      <img src="assets/images/ndmulogo.png" alt="NDMU" width="48" height="48" style="object-fit:contain;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.2));">
+      <img src="assets/images/ndmulogo.svg" alt="NDMU" width="48" height="48" style="object-fit:contain;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.2));">
       <div>
         <h1 class="h2 fw-bold mb-0">Frequently Asked Questions</h1>
         <div class="text-white-50 small">Find quick answers before you book.</div>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <circle cx="60" cy="60" r="56" fill="#1B2A4A" stroke="#D4A843" stroke-width="3"/>
+  <text x="60" y="48" text-anchor="middle" fill="#D4A843" font-family="Inter,sans-serif" font-weight="800" font-size="22">NDMU</text>
+  <line x1="30" y1="56" x2="90" y2="56" stroke="#D4A843" stroke-width="1.5" opacity="0.5"/>
+  <text x="60" y="72" text-anchor="middle" fill="#fff" font-family="Inter,sans-serif" font-weight="600" font-size="9">NOTRE DAME OF</text>
+  <text x="60" y="84" text-anchor="middle" fill="#fff" font-family="Inter,sans-serif" font-weight="600" font-size="9">MARBEL UNIVERSITY</text>
+</svg>

@@ -142,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
 
         <div class="d-flex align-items-center gap-3 mb-4 fade-up">
-          <img src="assets/images/ndmulogo.png" alt="NDMU" width="52" height="52" style="object-fit:contain">
+          <img src="assets/images/ndmulogo.svg" alt="NDMU" width="52" height="52" style="object-fit:contain">
           <div>
             <div class="fw-bold fs-5" style="color:var(--ndmu-navy);">Register</div>
             <div class="text-muted small">Join the NDMU Facility Booking System</div>

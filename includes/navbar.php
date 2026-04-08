@@ -21,7 +21,7 @@ $currentPage = basename($_SERVER['PHP_SELF'] ?? '');
 <nav class="navbar navbar-expand-lg navbar-dark ndmu-navbar">
   <div class="container">
     <a class="navbar-brand" href="<?= $user ? 'student_dashboard.php' : 'index.php' ?>">
-      <img src="assets/images/ndmulogo.png" alt="NDMU" width="32" height="32">
+      <img src="assets/images/ndmulogo.svg" alt="NDMU" width="32" height="32">
       <span>NDMU Booking</span>
     </a>
 
