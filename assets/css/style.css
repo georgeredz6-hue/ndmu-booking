@@ -489,6 +489,11 @@ a:hover {
   position: relative;
   z-index: 2;
 }
+.banner h1, .banner h2, .banner h3,
+.banner .h1, .banner .h2, .banner .h3, .banner .h4,
+.banner .fw-bold, .banner .fw-semibold {
+  color: #fff !important;
+}
 
 /* ---------- Page Banner (inner pages) ---------- */
 .page-banner {
@@ -509,8 +514,14 @@ a:hover {
   transform: rotate(15deg);
   pointer-events: none;
 }
-.page-banner h1 {
-  color: #fff;
+.page-banner h1,
+.page-banner h2,
+.page-banner h3,
+.page-banner .h1,
+.page-banner .h2,
+.page-banner .h3,
+.page-banner .fw-bold {
+  color: #fff !important;
   margin-bottom: 0.25rem;
 }
 .page-banner .text-white-50 {
