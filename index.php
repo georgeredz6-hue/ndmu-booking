@@ -26,7 +26,7 @@ try {
 <!-- Hero Section -->
 <section class="ndmu-hero" style="background-image:url('assets/images/ndmubgp.jpg')">
   <div class="container text-center py-5">
-    <img src="assets/images/ndmulogo.svg" alt="NDMU" class="hero-logo mb-4 fade-up">
+    <img src="assets/images/ndmulogo.png" alt="NDMU" class="hero-logo mb-4 fade-up">
     <h1 class="hero-title fade-up fade-up-delay-1"><?= e($settings['school_name']) ?></h1>
     <div class="hero-subtitle mb-3 fade-up fade-up-delay-2">Facility Booking System</div>
     <p class="hero-desc mb-4 fade-up fade-up-delay-2">

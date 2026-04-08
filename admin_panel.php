@@ -31,7 +31,7 @@ try {
 <div class="d-flex justify-content-between align-items-center mb-4">
   <div>
     <div class="d-flex align-items-center gap-2 mb-1">
-      <img src="assets/images/ndmulogo.svg" alt="NDMU" width="32" height="32" style="object-fit:contain">
+      <img src="assets/images/ndmulogo.png" alt="NDMU" width="32" height="32" style="object-fit:contain">
       <h1 class="h4 fw-bold mb-0">Admin Dashboard</h1>
     </div>
     <div class="text-muted small">Welcome back, <?= e((string)$me['name']) ?></div>
