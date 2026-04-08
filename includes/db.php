@@ -19,8 +19,8 @@ if (!isset($pdo)) {
         $dbHost = $parts['host'] ?? 'localhost';
         $dbPort = (int)($parts['port'] ?? 3306);
         $dbName = ltrim($parts['path'] ?? '/railway', '/');
-        $dbUser = $parts['user'] ?? 'root';
-        $dbPass = $parts['pass'] ?? '';
+        $dbUser = urldecode($parts['user'] ?? 'root');
+        $dbPass = urldecode($parts['pass'] ?? '');
     } elseif (getenv('MYSQL_HOST')) {
         // Railway auto-injected individual variables
         $dbHost = getenv('MYSQL_HOST') ?: 'localhost';
@@ -53,6 +53,7 @@ if (!isset($pdo)) {
         // Show connection target for debugging (no password exposed)
         echo '<h1>Database connection failed</h1>';
         echo '<p style="color:#666;">Could not connect to <code>' . htmlspecialchars("{$dbHost}:{$dbPort}/{$dbName}") . '</code> as <code>' . htmlspecialchars($dbUser) . '</code></p>';
+        echo '<p style="color:#999;font-size:0.875rem;">Error: ' . htmlspecialchars($ex->getMessage()) . '</p>';
         echo '<p style="color:#999;font-size:0.875rem;">Check that MYSQL_URL or MYSQL_HOST variables are set in your Railway service.</p>';
         exit;
     }
