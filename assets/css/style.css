@@ -534,8 +534,8 @@ a:hover {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(11,61,46,0.4) 0%,
-    rgba(11,61,46,0.92) 100%
+    rgba(11,61,46,0.25) 0%,
+    rgba(11,61,46,0.7) 100%
   );
 }
 .auth-page .ndmu-split-left > * {

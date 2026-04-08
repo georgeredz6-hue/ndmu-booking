@@ -125,9 +125,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="row min-vh-100">
     <!-- Left visual panel -->
     <div class="col-lg-5 d-none d-lg-flex ndmu-split-left align-items-end" style="background-image:url('assets/images/ndmubgp.jpg')">
-      <div class="p-5" style="position:relative; z-index:5; background:linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);">
-        <h2 class="fw-bold mb-2" style="color:#ffffff !important; text-shadow:0 3px 20px rgba(0,0,0,1), 0 1px 4px rgba(0,0,0,0.8); font-size:1.75rem;">Create your account</h2>
-        <p class="mb-0" style="color:#ffffff !important; opacity:0.9; text-shadow:0 2px 12px rgba(0,0,0,0.9);">Use your official NDMU email for faster verification.</p>
+      <div class="p-5" style="position:relative; z-index:5; background:linear-gradient(0deg, rgba(0,0,0,0.45) 0%, transparent 80%);">
+        <h2 class="fw-bold mb-2" style="color:#ffffff !important; text-shadow:0 2px 10px rgba(0,0,0,0.7); font-size:1.75rem;">Create your account</h2>
+        <p class="mb-0" style="color:#ffffff !important; opacity:0.85; text-shadow:0 1px 6px rgba(0,0,0,0.6);">Use your official NDMU email for faster verification.</p>
       </div>
     </div>
 
