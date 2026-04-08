@@ -18,8 +18,8 @@
 
 /* ---------- CSS Custom Properties ---------- */
 :root {
-  --ndmu-navy: #1B2A4A;
-  --ndmu-navy-light: #2D4470;
+  --ndmu-navy: #0B3D2E;
+  --ndmu-navy-light: #14553F;
   --ndmu-gold: #D4A843;
   --ndmu-gold-hover: #C49A35;
   --ndmu-gold-light: #F0D080;
@@ -32,10 +32,10 @@
   --ndmu-info: #3498DB;
   --ndmu-text: #1E293B;
   --ndmu-text-muted: #94A3B8;
-  --ndmu-shadow-sm: 0 1px 3px rgba(27,42,74,0.06), 0 1px 2px rgba(27,42,74,0.04);
-  --ndmu-shadow: 0 4px 6px -1px rgba(27,42,74,0.07), 0 2px 4px -2px rgba(27,42,74,0.05);
-  --ndmu-shadow-lg: 0 10px 25px -3px rgba(27,42,74,0.08), 0 4px 10px -4px rgba(27,42,74,0.04);
-  --ndmu-shadow-xl: 0 20px 50px -5px rgba(27,42,74,0.10), 0 8px 20px -6px rgba(27,42,74,0.06);
+  --ndmu-shadow-sm: 0 1px 3px rgba(11,61,46,0.06), 0 1px 2px rgba(11,61,46,0.04);
+  --ndmu-shadow: 0 4px 6px -1px rgba(11,61,46,0.07), 0 2px 4px -2px rgba(11,61,46,0.05);
+  --ndmu-shadow-lg: 0 10px 25px -3px rgba(11,61,46,0.08), 0 4px 10px -4px rgba(11,61,46,0.04);
+  --ndmu-shadow-xl: 0 20px 50px -5px rgba(11,61,46,0.10), 0 8px 20px -6px rgba(11,61,46,0.06);
   --ndmu-radius: 0.75rem;
   --ndmu-radius-lg: 1rem;
   --ndmu-radius-xl: 1.5rem;
@@ -122,7 +122,7 @@ a:hover {
 
 /* ---------- Navbar ---------- */
 .ndmu-navbar {
-  background: rgba(27, 42, 74, 0.97);
+  background: rgba(11, 61, 46, 0.97);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -134,7 +134,7 @@ a:hover {
 }
 
 .ndmu-navbar.scrolled {
-  box-shadow: 0 4px 20px rgba(27,42,74,0.25);
+  box-shadow: 0 4px 20px rgba(11,61,46,0.25);
   padding: 0.375rem 0;
 }
 
@@ -296,7 +296,7 @@ a:hover {
 .btn-outline-secondary:hover {
   border-color: var(--ndmu-navy);
   color: var(--ndmu-navy);
-  background: rgba(27,42,74,0.04);
+  background: rgba(11,61,46,0.04);
 }
 
 .btn-success {
@@ -374,7 +374,7 @@ a:hover {
 }
 
 .card-icon.icon-gold { background: rgba(212,168,67,0.12); color: var(--ndmu-gold); }
-.card-icon.icon-navy { background: rgba(27,42,74,0.08); color: var(--ndmu-navy); }
+.card-icon.icon-navy { background: rgba(11,61,46,0.08); color: var(--ndmu-navy); }
 .card-icon.icon-emerald { background: rgba(46,204,113,0.12); color: var(--ndmu-emerald); }
 .card-icon.icon-info { background: rgba(52,152,219,0.12); color: var(--ndmu-info); }
 .card-icon.icon-danger { background: rgba(231,76,60,0.12); color: var(--ndmu-danger); }
@@ -424,9 +424,9 @@ a:hover {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(27, 42, 74, 0.85) 0%,
-    rgba(27, 42, 74, 0.7) 50%,
-    rgba(27, 42, 74, 0.9) 100%
+    rgba(11, 61, 46, 0.85) 0%,
+    rgba(11, 61, 46, 0.7) 50%,
+    rgba(11, 61, 46, 0.9) 100%
   );
   z-index: 1;
 }
@@ -483,7 +483,7 @@ a:hover {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(27,42,74,0.92), rgba(27,42,74,0.78));
+  background: linear-gradient(135deg, rgba(11,61,46,0.92), rgba(11,61,46,0.78));
 }
 .banner-content {
   position: relative;
@@ -534,14 +534,15 @@ a:hover {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(27,42,74,0.3) 0%,
-    rgba(27,42,74,0.85) 100%
+    rgba(11,61,46,0.4) 0%,
+    rgba(11,61,46,0.92) 100%
   );
 }
 .auth-page .ndmu-split-left > * {
   position: relative;
   z-index: 2;
   color: #fff;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
 }
 
 .auth-page .auth-form-side {
@@ -642,7 +643,7 @@ a:hover {
   transition: background var(--ndmu-transition-fast);
 }
 .table tbody tr:hover {
-  background: rgba(27,42,74,0.02);
+  background: rgba(11,61,46,0.02);
 }
 
 .table-responsive {
@@ -682,7 +683,7 @@ a:hover {
   border: 1px solid var(--ndmu-border);
 }
 .badge.bg-primary {
-  background: rgba(27,42,74,0.12) !important;
+  background: rgba(11,61,46,0.12) !important;
   color: var(--ndmu-navy);
 }
 
@@ -778,7 +779,7 @@ a:hover {
   transition: background var(--ndmu-transition-fast);
 }
 .accordion-button:not(.collapsed) {
-  background: rgba(27,42,74,0.03);
+  background: rgba(11,61,46,0.03);
   color: var(--ndmu-navy);
   box-shadow: none;
 }
@@ -834,7 +835,7 @@ a:hover {
 }
 .admin-sidebar .sidebar-nav .nav-link:hover {
   color: var(--ndmu-navy);
-  background: rgba(27,42,74,0.03);
+  background: rgba(11,61,46,0.03);
 }
 .admin-sidebar .sidebar-nav .nav-link.active {
   color: var(--ndmu-navy);
