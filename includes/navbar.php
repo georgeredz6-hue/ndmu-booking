@@ -18,7 +18,7 @@ if ($user) {
 // Determine current page for active state
 $currentPage = basename($_SERVER['PHP_SELF'] ?? '');
 ?>
-<nav class="navbar navbar-expand-lg ndmu-navbar">
+<nav class="navbar navbar-expand-lg navbar-dark ndmu-navbar">
   <div class="container">
     <a class="navbar-brand" href="<?= $user ? 'student_dashboard.php' : 'index.php' ?>">
       <img src="assets/images/ndmulogo.png" alt="NDMU" width="32" height="32">
