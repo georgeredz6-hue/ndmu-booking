@@ -188,12 +188,32 @@ INSERT IGNORE INTO faq_entries (category, question, answer, sort_order, is_activ
 ('Technical', 'I forgot my password. What do I do?', 'Click Forgot Password on the login page and follow the instructions.', 7, 1);
 
 INSERT IGNORE INTO facilities (name, location, capacity, is_active) VALUES
-('NDMU Auditorium', 'Main Building, Ground Floor', 800, 1),
-('AVP Conference Room', 'Administration Building, 2nd Floor', 40, 1),
-('College Gymnasium', 'Sports Complex', 1000, 1),
-('Computer Laboratory 1', 'IT Building, 1st Floor', 30, 1),
-('Library Study Room A', 'Library Building, 3rd Floor', 20, 1),
-('Multi-Purpose Hall', 'Student Center', 200, 1);
+('NDMU Auditorium',         'Main Building, Ground Floor',           800,  1),
+('AVP Conference Room',     'Administration Building, 2nd Floor',     40,  1),
+('College Gymnasium',       'Sports Complex',                       1000,  1),
+('Computer Laboratory 1',  'IT Building, 1st Floor',                 30,  1),
+('Library Study Room A',   'Library Building, 3rd Floor',            20,  1),
+('Multi-Purpose Hall',     'Student Center',                        200,  1),
+('Covered Court',           'Campus Grounds',                        500,  1),
+('BRC Dining Hall',         'BRC Building',                          300,  1),
+('BRC Convention Hall',     'BRC Building',                          500,  1),
+('SMC Hall',                'Student Medical Center',                200,  1),
+('BRC Lobby',               'BRC Building',                          100,  1),
+('Dance Studio 1',          'Arts Building, 1st Floor',               50,  1),
+('Dance Studio 2',          'Arts Building, 2nd Floor',               50,  1),
+('Quadrangle',              'Campus Grounds',                       1000,  1),
+('Reviewing Stand',         'Campus Grounds',                        300,  1),
+('Soccer Field',            'Sports Complex',                       2000,  1),
+('Function Hall',           'Event Center',                          400,  1),
+('Gymnasium',               'Sports Complex',                        800,  1),
+('Tennis Court',            'Sports Complex',                        100,  1),
+('Badminton Court',         'Sports Complex',                        150,  1),
+('Dumont',                  'Classroom Building',                    100,  1),
+('Doherty',                 'Classroom Building',                    100,  1),
+('Teston',                  'Classroom Building',                    100,  1),
+('Omer',                    'Classroom Building',                    100,  1),
+('Creegan',                 'Classroom Building',                    100,  1),
+('SLR',                     'Student Learning Resource Center',      150,  1);
 
 INSERT IGNORE INTO items (name, category, quantity_available, is_active) VALUES
 ('LCD Projector', 'Equipment', 5, 1),
